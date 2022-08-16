@@ -9,27 +9,27 @@ function ListCreditNote(selectedInvoice) {
 
     const creditNotesMatch = creditNotes.filter((creditNote) => creditNote.reference === selectedInvoice);
 
-    console.log({creditNotesMatch})
-    
+    console.log({ creditNotesMatch })
+
     const list = creditNotes.map((creditNote) => {
-            return (
-                <tr key={creditNote.id}>
-                    <td className="content-start">
-                        <label>
-                            <input
-                                type="radio"
-                                id={creditNote.id}
-                                value={creditNote.id}
-                                name={creditNote.type}
-                                // onChange={}
-                            />
-                            {`${creditNote.id} (${creditNote.organization_id})`}
-                        </label>
-                    </td>
-                    <td className="content-start">{creditNote.amount} {creditNote.currency}</td>
-                    <td className="content-start">{creditNote.reference}</td>
-                </tr>
-            )
+        return (
+            <tr key={creditNote.id}>
+                <td className="content-start">
+                    <label>
+                        <input
+                            type="radio"
+                            id={creditNote.id}
+                            value={creditNote.id}
+                            name={creditNote.type}
+                        // onChange={}
+                        />
+                        {`${creditNote.id} (${creditNote.organization_id})`}
+                    </label>
+                </td>
+                <td className="content-start">{creditNote.amount} {creditNote.currency}</td>
+                <td className="content-start">{creditNote.reference}</td>
+            </tr>
+        )
     });
 
 
