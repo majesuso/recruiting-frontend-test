@@ -1,47 +1,45 @@
-// import { useEffect, useState } from "react"
-import {invoicesData} from '../data/invoicesData'
+import { invoicesData } from '../data/invoicesData'
 
 
 function ListInvoicesReceived() {
 
-    // const [invoices, setInvoices] = useState([]);
-
-    //     useEffect(() => {
-
-    //     fetch('https://recruiting.api.bemmbo.com/invoices/pending')
-    //         .then(response => response.json())
-    //         .then(data => console.log(data))
-    //         .catch(e => console.error(e.message));
-
-    // }, []);
-
-    // console.log(invoices)
 
     const list = invoicesData.map((invoice) => {
         console.log(invoice.id)
         if (invoice.type === 'received') {
             return (
-
-                <li key={invoice.id}>
-                    <label>
-                    <input
-                        type="radio"
-                        id={invoice.id}
-                        value={invoice.id}
-                        name={invoice.type}
-                    />
-                    {`${invoice.id} (${invoice.organization_id})`}
-                    </label>
-                    
-
-                </li>
+                <tbody className="text-xs">
+                    <tr>
+                        <td className="content-start">
+                            <label>
+                                <input
+                                    type="radio"
+                                    id={invoice.id}
+                                    value={invoice.id}
+                                    name={invoice.type}
+                                />
+                                {`${invoice.id} (${invoice.organization_id})`}
+                            </label>
+                        </td>
+                        <td className="content-start">{invoice.amount} {invoice.currency}</td>
+                        <td className="content-start">{invoice.type}</td>
+                    </tr>
+                </tbody>
             )
         }
     })
 
     return (
         <div>
-            <ul>{list}</ul>
+            <table className="table-auto w-80">
+                <thead className="text-base">
+                    <tr>
+                        <th>Choose a invoice</th>
+                    </tr>
+                </thead>
+                {list}
+            </table>
+
         </div>
     )
 }
