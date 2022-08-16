@@ -1,5 +1,5 @@
 import { Fragment } from 'react';
-import {ListInvoicesReceived} from './components/ListInvoicesReceived';
+import { ListInvoicesReceived } from './components/ListInvoicesReceived';
 function App() {
   return (
     <Fragment>
