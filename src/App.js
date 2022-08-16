@@ -1,9 +1,11 @@
 import { Fragment } from 'react';
-import { ListInvoicesReceived } from './components/ListInvoicesReceived';
+import { InvoicesReceived } from './components/InvoicesReceived';
+
 function App() {
+
   return (
     <Fragment>
-      <ListInvoicesReceived />
+      <InvoicesReceived />
     </Fragment>
   );
 }

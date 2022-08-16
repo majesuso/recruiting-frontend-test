@@ -3,15 +3,9 @@ import { invoicesData } from '../data/invoicesData'
 
 function ListCreditNote(selectedInvoice) {
 
-    const creditNotes = invoicesData.filter((invoice) => invoice.type === 'credit_note');
+    const matchCreditNotes = invoicesData.filter((invoice) => invoice.type === 'credit_note' && invoice.reference === selectedInvoice.selectedInvoice);
 
-    // console.log({filterCreditNote})
-
-    const creditNotesMatch = creditNotes.filter((creditNote) => creditNote.reference === selectedInvoice);
-
-    console.log({ creditNotesMatch })
-
-    const list = creditNotes.map((creditNote) => {
+    const list = matchCreditNotes.map((creditNote) => {
         return (
             <tr key={creditNote.id}>
                 <td className="content-start">
@@ -38,7 +32,7 @@ function ListCreditNote(selectedInvoice) {
             <table className="table-auto w-80">
                 <thead className="text-base">
                     <tr>
-                        <th>Choose a credit note</th>
+                        <th>{matchCreditNotes.length > 0 ? 'Choose a credit note' : ''}</th>
                     </tr>
                 </thead>
                 <tbody className="text-xs">

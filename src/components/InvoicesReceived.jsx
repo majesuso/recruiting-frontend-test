@@ -3,17 +3,11 @@ import { invoicesData } from '../data/invoicesData'
 import { ListCreditNote } from './CreditNote'
 
 
-function ListInvoicesReceived() {
+function InvoicesReceived() {
 
     const [selectedInvoice, setSelectedInvoice] = useState('');
 
     const getSelectedInvoiceValue = (event) => {
-        // setSelectedInvoice({ ...selectedInvoice, [event.target.name]: event.target.value })
-        // if(selectedInvoice.length === 0){
-        //     setSelectedInvoice(selectedInvoice.concat(event.target.value));
-        // } else {
-        //     setSelectedInvoice(selectedInvoice[0] = event.target.value);
-        // }
         setSelectedInvoice(event.target.value);
     };
 
@@ -40,11 +34,9 @@ function ListInvoicesReceived() {
         )
     });
 
-    // console.log({selectedInvoice});
-
     return (
         <Fragment>
-            <table className="table-auto w-80">
+            <table className="table-auto w-100">
                 <thead className="text-base">
                     <tr>
                         <th>Choose an invoice</th>
@@ -54,11 +46,11 @@ function ListInvoicesReceived() {
                     {list}
                 </tbody>
             </table>
-            
+
             <ListCreditNote selectedInvoice={selectedInvoice} />
 
         </Fragment>
     )
 }
 
-export { ListInvoicesReceived }
+export { InvoicesReceived }
