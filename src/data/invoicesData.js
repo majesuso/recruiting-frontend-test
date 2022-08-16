@@ -1,4 +1,4 @@
-const invoicesData = [
+export const invoicesData = [
     {
         id: "inv_MRlj0lt95XyQjvPY",
         amount: 40000000,
@@ -45,4 +45,3 @@ const invoicesData = [
         reference: "inv_nDAprkt7D0LKjkE2"
     }
 ]
-export {invoicesData}
