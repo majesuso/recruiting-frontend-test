@@ -4,16 +4,19 @@ import { ListCreditNote } from './CreditNote';
 
 
 function InvoicesReceived() {
-
+    // estado selección de facturas
     const [selectedInvoice, setSelectedInvoice] = useState('');
 
+    // guardando valor de la factura seleccionada en el estado
     const getSelectedInvoiceValue = (event) => {
         setSelectedInvoice(event.target.value);
     };
 
-    const invoicesReceived = invoicesData.filter((invoice) => invoice.type === 'received');
+    // filtro para obtener facturas recibidas
+    const invoicesReceived = (invoices) => invoices.filter((invoice) => invoice.type === 'received');
 
-    const list = invoicesReceived.map((invoice) => {
+    // obteniendo lista de facturas que sean de tipo 'recibidas'
+    const getListInvoices = (invoices) => invoices.map((invoice) => {
         return (
             <tr key={invoice.id} className="odd:bg-white even:bg-violet-100">
                 <td className="content-start">
@@ -41,7 +44,7 @@ function InvoicesReceived() {
                     </tr>
                 </thead>
                 <tbody className="text-xs">
-                    {list}
+                    {getListInvoices(invoicesReceived(invoicesData))}
                 </tbody>
             </table>
 

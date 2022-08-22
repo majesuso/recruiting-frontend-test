@@ -5,17 +5,26 @@ import ReactModal from 'react-modal';
 
 function ListCreditNote(selectedInvoice) {
 
+    // estado de selección notas de credito
     const [selectedCreditNote, setSelectedCreditNote] = useState('');
+    // estado modal
     const [modalState, setModalState] = useState(false);
 
-    const matchCreditNotes = invoicesData.filter((invoice) => invoice.type === 'credit_note' && invoice.reference === selectedInvoice.selectedInvoice);
+    // encontrar las notas de credito según el id de la factura seleccionada
+    const findMatchesCreditNotes = (invoices) => invoices.filter((invoice) => invoice.type === 'credit_note' && invoice.reference === selectedInvoice.selectedInvoice);
 
+    // guardando valor de la nota de credito seleccionada en el estado
     const getSelectedCreditNote = (event) => {
         setSelectedCreditNote(event.target.value);
     }
 
+    // eliminar las notas de credito que ya hayan sido asignadas
+    const deleteAssignedCreditNotes = (creditNotes) => {
+        return creditNotes.filter((creditNote) => creditNote.id !== selectedCreditNote);
+    }
 
-    const list = matchCreditNotes.map((creditNote) => {
+    // obteniendo la lista de notas de credito
+    const getListCreditNotes = (creditNotes) => creditNotes.map((creditNote) => {
         return (
             <tr key={creditNote.id}>
                 <td className="content-start">
@@ -34,24 +43,20 @@ function ListCreditNote(selectedInvoice) {
         )
     });
 
-    const deleteAssignedCreditNotes = () => {
-        return matchCreditNotes.filter((creditNote) => creditNote.id !== selectedCreditNote);
-    }
-
     return (
         <Fragment>
             <table className="table-auto w-100">
                 <thead className="text-base">
                     <tr>
-                        <th>{matchCreditNotes.length > 0 ? 'Choose a credit note' : ''}</th>
+                        <th>{findMatchesCreditNotes(invoicesData).length > 0 && 'Choose a credit note'}</th>
                     </tr>
                 </thead>
                 <tbody className="text-xs">
-                    {list}
+                    {getListCreditNotes(findMatchesCreditNotes(invoicesData))}
                 </tbody>
             </table>
 
-            {matchCreditNotes.length > 0 && <button className="bg-violet-400 hover:bg-violet-500" onClick={() => {
+            {findMatchesCreditNotes(invoicesData).length > 0 && <button className="bg-violet-400 hover:bg-violet-500" onClick={() => {
                 setModalState(true);
                 deleteAssignedCreditNotes();
             }}>
