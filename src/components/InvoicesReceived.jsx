@@ -1,6 +1,6 @@
-import { Fragment, useState } from 'react'
-import { invoicesData } from '../data/invoicesData'
-import { ListCreditNote } from './CreditNote'
+import { Fragment, useState } from 'react';
+import { invoicesData } from '../data/invoicesData';
+import { ListCreditNote } from './CreditNote';
 
 
 function InvoicesReceived() {

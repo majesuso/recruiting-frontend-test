@@ -1,10 +1,12 @@
 import { Fragment, useState } from "react";
-import { invoicesData } from '../data/invoicesData'
+import { invoicesData } from '../data/invoicesData';
+import ReactModal from 'react-modal';
+
 
 function ListCreditNote(selectedInvoice) {
 
     const [selectedCreditNote, setSelectedCreditNote] = useState('');
-    
+    const [modalState, setModalState] = useState(false);
 
     const matchCreditNotes = invoicesData.filter((invoice) => invoice.type === 'credit_note' && invoice.reference === selectedInvoice.selectedInvoice);
 
@@ -12,7 +14,6 @@ function ListCreditNote(selectedInvoice) {
         setSelectedCreditNote(event.target.value);
     }
 
-    // console.log(selectedCreditNote);
 
     const list = matchCreditNotes.map((creditNote) => {
         return (
@@ -47,8 +48,16 @@ function ListCreditNote(selectedInvoice) {
                 </tbody>
             </table>
 
-            {matchCreditNotes.length > 0 ? <button className="bg-violet-400 hover:bg-violet-500">Asignar</button> : null}
-        </Fragment>
+            {matchCreditNotes.length > 0
+                ? <button className="bg-violet-400 hover:bg-violet-500" onClick={() => setModalState(true)} >Asignar</button>
+                : null}
+
+            <ReactModal isOpen={modalState}>
+                <p>Credit note assigned correctly</p>
+                <button className="bg-violet-400 hover:bg-violet-500" onClick={() => setModalState(false)}> Keep assigning</button>
+            </ReactModal>
+
+        </Fragment >
     )
 }
 
