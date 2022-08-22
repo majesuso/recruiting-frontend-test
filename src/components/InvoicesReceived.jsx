@@ -15,20 +15,18 @@ function InvoicesReceived() {
 
     const list = invoicesReceived.map((invoice) => {
         return (
-            <tr key={invoice.id}>
+            <tr key={invoice.id} className="odd:bg-white even:bg-violet-100">
                 <td className="content-start">
-                    <label>
-                        <input
-                            type="radio"
-                            id={invoice.id}
-                            value={invoice.id}
-                            name={invoice.type}
-                            onChange={getSelectedInvoiceValue}
-                        />
-                        {`${invoice.id} (${invoice.organization_id})`}
-                    </label>
+                    <input
+                        type="radio"
+                        id={invoice.id}
+                        value={invoice.id}
+                        name={invoice.type}
+                        onChange={getSelectedInvoiceValue}
+                    />
                 </td>
-                <td className="content-start">{invoice.amount} {invoice.currency}</td>
+                <td>{`${invoice.id} (${invoice.organization_id})`}</td>
+                <td className="content-start">{`${invoice.amount} ${invoice.currency}`}</td>
                 <td className="content-start">{invoice.type}</td>
             </tr>
         )
