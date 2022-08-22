@@ -34,6 +34,9 @@ function ListCreditNote(selectedInvoice) {
         )
     });
 
+    const deleteAssignedCreditNotes = () => {
+        return matchCreditNotes.filter((creditNote) => creditNote.id !== selectedCreditNote);
+    }
 
     return (
         <Fragment>
@@ -48,9 +51,12 @@ function ListCreditNote(selectedInvoice) {
                 </tbody>
             </table>
 
-            {matchCreditNotes.length > 0
-                ? <button className="bg-violet-400 hover:bg-violet-500" onClick={() => setModalState(true)} >Asignar</button>
-                : null}
+            {matchCreditNotes.length > 0 && <button className="bg-violet-400 hover:bg-violet-500" onClick={() => {
+                setModalState(true);
+                deleteAssignedCreditNotes();
+            }}>
+                Asignar
+            </button>}
 
             <ReactModal isOpen={modalState}>
                 <p>Credit note assigned correctly</p>
