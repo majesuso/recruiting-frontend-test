@@ -1,11 +1,7 @@
-import { Fragment, useState } from 'react';
+import { Fragment } from 'react';
 import { invoicesData } from '../data/invoicesData';
-import { ListCreditNote } from './CreditNote';
 
-
-function InvoicesReceived() {
-    // estado selección de facturas
-    const [selectedInvoice, setSelectedInvoice] = useState('');
+function InvoicesReceived({ setSelectedInvoice }) {
 
     // guardando valor de la factura seleccionada en el estado
     const getSelectedInvoiceValue = (event) => {
@@ -47,9 +43,6 @@ function InvoicesReceived() {
                     {getListInvoices(invoicesReceived(invoicesData))}
                 </tbody>
             </table>
-
-            <ListCreditNote selectedInvoice={selectedInvoice} />
-
         </Fragment>
     )
 }
